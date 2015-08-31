@@ -1,0 +1,53 @@
+extends layout
+
+block title
+  title #{recipe.Title}
+
+block content
+  div(class='page')
+    h1 #{recipe.Title}
+    if recipe['Pre-Notes']
+      h2 Pre-Notes
+      - str = recipe['Pre-Notes'];
+      - str = str.replace(/(?:\r\n|\r|\n)/g, "<br>");
+      - str = str.replace(/_(\w+)/g, "<u>$1</u>");
+      p !{str}
+    if recipe.Ingredients
+      h2 Ingredients
+      - var splitArray = recipe.Ingredients.split('\n');
+      ul
+        each item in splitArray
+          - str = item;
+          - str = str.replace(/_(\w+)/g, "<u>$1</u>");
+          if (str.substr(0,2) == '. ')
+            li !{str.substr(2)}
+          else if (str.substr(0,2) == '* ')
+            h3 !{str.substr(2)}
+          else
+            p !{str}
+    if recipe.Instructions
+      h2 Instructions
+      div(class='instructions')
+      - var splitArray = recipe.Instructions.split('\n');
+      ol
+        - val = 1;
+        each item in splitArray
+          - str = item;
+          - str = str.replace(/_(\w+)/g, "<u>$1</u>");
+          if (str.substr(0,2) == '. ')
+            li(class='liInstructions', value=val) !{str.substr(2)}
+            - val++;
+          else if (str.substr(0,2) == '* ')
+            h3 !{str.substr(2)}
+            - val = 1;
+          else
+            p !{str}
+            - val = 1;
+    if recipe['Post-Notes']
+      h2 Post-Notes
+      - str = recipe['Post-Notes'];
+      - str = str.replace(/(?:\r\n|\r|\n)/g, "<br>");
+      - str = str.replace(/_(\w+)/g, "<u>$1</u>");
+      p !{str}
+  div(class='postpage')
+    a(href='/') Back to Home

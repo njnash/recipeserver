@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #b0c4de;
+  font: 1em "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+
+h1 {
+  font-size: 2em;
+  text-decoration: underline;
+}
+
+h2 {
+  padding-top: .2in;
+  padding-bottom: .05in;
+  font-size: 1.5em;
+}
+
+h3 {
+  margin-left: -0.2in;
+  padding-top: 0.03in;
+  padding-bottom: 0in;
+  font-size: 1.25em;
+}
+
+table {
+/* Help debugging tables */
+/*  border: 1px solid black; */
+}
+
+td {
+/* Help debugging tables */
+/*  border: 1px solid red; */
+}
+
+p {
+  padding-left: 0.25in;
+  padding-bottom: 0.1in;
+}
+
+ul {
+  margin-left: .4in;
+}
+
+ol {
+  margin-left: .4in;
+}
+
+.liInstructions
+{
+  padding-bottom: 0.1in;
+}
+
+.page {
+  margin: auto;
+  max-width: 8.5in;
+  min-height: 11in;
+  padding: 0.25in 0.25in 0.25in 0.25in;
+  background-color: #ffffff;
+}
+
+.searchpage {
+  margin: auto;
+  max-width: 8.5in;
+  min-height: 11in;
+  padding: 0.25in 0.25in 0.25in 0.25in;
+  color: #3E84DE;
+  background-color: #ffffff;
+}
+
+.postpage {
+  margin: auto;
+  max-width: 8.5in;
+  padding: 0.25in 0in 0.25in 0.0in;
+}
+
+.instructions {
+  padding-left: 14pt ;
+  text-indent: -14pt ;
+}

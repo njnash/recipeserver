@@ -1,0 +1,48 @@
+extends layout
+
+block title
+  title Audrey's Great Big Book Of Food
+
+block content
+  div(class='searchpage')
+    h1(style='text-align: center') #{title}
+    table(style='width=100%;padding-top:.1in')
+      tr
+        td
+          a(href="/")
+            img(src='/images/Audrey\'s Great Big Book of Food Small.png', alt='Audrey\'s Great Big Book of Food', width='100%')
+        td
+          | #{armOriginal.length} recipes are online.
+          br
+          | To search the recipes, enter terms in the box below, and/or choose values from one or more of the searchable fields.
+          form
+            div(style='text-align: center')
+              table(style='width: auto;margin: auto;')
+                tr
+                  td(colspan='2',style='text-align: left')
+                    input(type='text',onfocus="this.select();",style='width:100%;',autofocus,name='terms',value=query['terms'] )
+                each searchable in aSearchables
+                  tr
+                    td(style='text-align: right') #{searchable.field}:
+                    td(style='text-align: left')
+                        select(name=searchable.field,style='width:100%')
+                          if (query[searchable.field] == null || query[searchable.field].length == 0)
+                            option(value='',selected)
+                          else
+                            option(value='')
+                          each envalue in searchable.enums
+                            if (query[searchable.field] != null && query[searchable.field] == envalue)
+                              option(value=envalue,selected) #{envalue}
+                            else
+                              option(value=envalue) #{envalue}
+                tr
+                  td(colspan='2',style='text-align: center')
+                    input(type='submit')
+        tr
+          td(colspan='2')
+            hr
+            if (armOriginal.length != armFiltered.length)
+              h2 #{armFiltered.length} recipes match your search.
+              each item in armFiltered
+                p
+                  a(href='recipe?ID='+item.ID ) #{item.Title}
