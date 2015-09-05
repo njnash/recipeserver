@@ -43,6 +43,11 @@
   float:left;
 }
 
+.mealsPageImage {
+  width: 1.5in;
+  float:left;
+}
+
 .indexPageResults {
   clear:left;
 }

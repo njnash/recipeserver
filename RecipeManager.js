@@ -18,6 +18,7 @@ function RecipeManager(googleSpreadsheetID)
     {field:'Prep Method',enums:[]},
     {field:'Difficulty',enums:[]},
     {field:'Serving Temp',enums:[]},
+    {field:'Meals',enums:[]},
   ];
 
   this.loadRecipeData();
@@ -105,12 +106,8 @@ RecipeManager.prototype.loadRecipeData = function()
           }
           rm.recipes = newRecipes;
           rm.recipes.sort( function(a,b) {
-                             if (a.Title > b.Title) {
-                               return 1;
-                             }
-                             if (a.Title < b.Title) {
-                               return -1;
-                             }
+                             if (a.Title > b.Title) return 1;
+                             if (a.Title < b.Title) return -1;
                              return 0;
                            }
                          );
