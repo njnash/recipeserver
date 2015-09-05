@@ -12,6 +12,8 @@ var recipe = require('./routes/recipe');
 
 var app = express();
 global.rm = new RecipeManager('1qfK7ULjezDNXlQRMW55niFDRHz9WEjC4OxYGDgYlSNA');
+// Re-read the recipe data
+setInterval(function(){global.rm.loadRecipeData();}, 15 * 60 * 1000);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

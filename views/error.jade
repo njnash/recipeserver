@@ -1,6 +1,11 @@
-extends layout
+doctype html
+html
+  head
+    title Audrey's Great Big Book Of Food
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='/stylesheets/style_screen.css')
 
-block content
+body
   h1= message
   h2= error.status
   pre #{error.stack}

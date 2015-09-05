@@ -1,0 +1,53 @@
+@import url("common.css");
+
+.searchTable {
+  padding-top: .25in;
+  width: auto;
+  margin: auto;
+}
+
+.searchText {
+  width:70%
+}
+
+.fieldLabel {
+  text-align: right;
+}
+
+.fieldSelector {
+  text-align: left;
+}
+
+.submitButtonCell {
+  text-align: center;
+}
+
+.numRecipesMessage {
+  text-align: center;
+}
+
+.instructionsMessage {
+  padding-top: .25in;
+}
+
+.indexPage {
+  margin: auto;
+  max-width: 8.5in;
+  padding: 0.25in 0.25in 0.25in 0.25in;
+  color: #3E84DE;
+  background-color: #ffffff;
+}
+
+.indexPageImage {
+  width: 3in;
+  float:left;
+}
+
+.indexPageResults {
+  clear:left;
+}
+
+.result {
+  font-size: 1.3em;
+  padding: 0.2in 0.25in 0.0in 0.25in;
+}

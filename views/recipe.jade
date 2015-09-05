@@ -1,16 +1,21 @@
-extends layout
+doctype html
+html
+  head
+    title #{recipe.Title}
+    link(rel='stylesheet', href='/stylesheets/recipe_screen.css')
 
-block title
-  title #{recipe.Title}
-
-block content
+body
   div(class='page')
     h1 #{recipe.Title}
+    if (recipe.Source)
+      div(class="source") Source: #{recipe.Source}
     if recipe['Pre-Notes']
       h2 Pre-Notes
       - str = recipe['Pre-Notes'];
       - str = str.replace(/(?:\r\n|\r|\n)/g, "<br>");
+      - str = str.replace(/\^_(\w+)/g, "<u><i>$1</i></u>");
       - str = str.replace(/_(\w+)/g, "<u>$1</u>");
+      - str = str.replace(/\^(\w+)/g, "<i>$1</i>");
       p !{str}
     if recipe.Ingredients
       h2 Ingredients
@@ -18,7 +23,9 @@ block content
       ul
         each item in splitArray
           - str = item;
+          - str = str.replace(/\^_(\w+)/g, "<u><i>$1</i></u>");
           - str = str.replace(/_(\w+)/g, "<u>$1</u>");
+          - str = str.replace(/\^(\w+)/g, "<i>$1</i>");
           if (str.substr(0,2) == '. ')
             li !{str.substr(2)}
           else if (str.substr(0,2) == '* ')
@@ -27,13 +34,14 @@ block content
             p !{str}
     if recipe.Instructions
       h2 Instructions
-      div(class='instructions')
       - var splitArray = recipe.Instructions.split('\n');
       ol
         - val = 1;
         each item in splitArray
           - str = item;
+          - str = str.replace(/\^_(\w+)/g, "<u><i>$1</i></u>");
           - str = str.replace(/_(\w+)/g, "<u>$1</u>");
+          - str = str.replace(/\^(\w+)/g, "<i>$1</i>");
           if (str.substr(0,2) == '. ')
             li(class='liInstructions', value=val) !{str.substr(2)}
             - val++;
@@ -43,11 +51,40 @@ block content
           else
             p !{str}
             - val = 1;
+      if recipe['How to Photos']
+        - var splitArray = recipe['How to Photos'].split('\n');
+        each item in splitArray
+          img(src=item)
+          br
     if recipe['Post-Notes']
       h2 Post-Notes
       - str = recipe['Post-Notes'];
       - str = str.replace(/(?:\r\n|\r|\n)/g, "<br>");
       - str = str.replace(/_(\w+)/g, "<u>$1</u>");
       p !{str}
+    if recipe['Picture']
+      - var splitArray = recipe['Picture'].split('\n');
+      each item in splitArray
+        img(src=item)
+        br
+    if (recipe['Servings'])
+      div(class='recipeAttributes') Serves: #{recipe['Servings']}
+    if (recipe['Prep Time'])
+      div(class='recipeAttributes') Prep Time: #{recipe['Prep Time']}
+    if (recipe['Cook Time'])
+      div(class='recipeAttributes') Cook Time: #{recipe['Cook Time']}
+    if (recipe['Course'])
+      div(class='recipeAttributes') Course: #{recipe['Course']}
+    if (recipe['Type of Food'])
+      div(class='recipeAttributes') Type of Food: #{recipe['Type of Food']}
+    if (recipe['Ethnicity'])
+      div(class='recipeAttributes') Ethnicity: #{recipe['Ethnicity']}
+    if (recipe['Key Ingredient'])
+      div(class='recipeAttributes') Key Ingredient: #{recipe['Key Ingredient']}
+    if (recipe['Difficulty'])
+      div(class='recipeAttributes') Difficulty: #{recipe['Difficulty']}
+    if (recipe['Make Ahead'])
+      div(class='recipeAttributes') Make Ahead: #{recipe['Make Ahead']}
+          
   div(class='postpage')
     a(href='/') Back to Home

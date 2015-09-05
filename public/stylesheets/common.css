@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #b0c4de;
+  font: 1em "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+div {
+  /* border: 1px solid black; */
+}
+
+img {
+  width:100%;
+}
