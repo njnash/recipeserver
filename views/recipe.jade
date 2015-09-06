@@ -2,7 +2,38 @@ doctype html
 html
   head
     title #{recipe.Title}
-    link(rel='stylesheet', href='/stylesheets/recipe_screen.css')
+    link(rel='stylesheet', href='/stylesheets/recipe.css')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+
+mixin recipeImages(str)
+  - var splitArray = str.split('\n');
+  each item in splitArray
+    img(src=item)
+    br
+
+mixin recipeBody(str)
+  - var splitArray = str.split('\n');
+  - var val = 1
+  ol
+    each item in splitArray
+      - str = item;
+      - str = str.replace(/\$_(\w+)/g, "<b><i>$1</i></b>");
+      - str = str.replace(/\^_(\w+)/g, "<u><i>$1</i></u>");
+      - str = str.replace(/\$(\w+)/g, "<b>$1</b>");
+      - str = str.replace(/_(\w+)/g, "<u>$1</u>");
+      - str = str.replace(/\^(\w+)/g, "<i>$1</i>");
+      if (str.substr(0,2) == '. ')
+        li(class='liUnordered') !{str.substr(2)}
+        - val = 1;
+      else if (str.substr(0,2) == '# ')
+        li(class='liOrdered', value=val) !{str.substr(2)}
+        - ++val;
+      else if (str.substr(0,2) == '* ')
+        h3 !{str.substr(2)}
+        - val = 1;
+      else
+        p !{str}
+        - val = 1;
 
 body
   div(class='page')
@@ -11,62 +42,20 @@ body
       div(class="source") Source: #{recipe.Source}
     if recipe['Pre-Notes']
       h2 Pre-Notes
-      - str = recipe['Pre-Notes'];
-      - str = str.replace(/(?:\r\n|\r|\n)/g, "<br>");
-      - str = str.replace(/\^_(\w+)/g, "<u><i>$1</i></u>");
-      - str = str.replace(/_(\w+)/g, "<u>$1</u>");
-      - str = str.replace(/\^(\w+)/g, "<i>$1</i>");
-      p !{str}
+      + recipeBody(recipe['Pre-Notes'])
     if recipe.Ingredients
       h2 Ingredients
-      - var splitArray = recipe.Ingredients.split('\n');
-      ul
-        each item in splitArray
-          - str = item;
-          - str = str.replace(/\^_(\w+)/g, "<u><i>$1</i></u>");
-          - str = str.replace(/_(\w+)/g, "<u>$1</u>");
-          - str = str.replace(/\^(\w+)/g, "<i>$1</i>");
-          if (str.substr(0,2) == '. ')
-            li !{str.substr(2)}
-          else if (str.substr(0,2) == '* ')
-            h3 !{str.substr(2)}
-          else
-            p !{str}
+      + recipeBody(recipe.Ingredients)
     if recipe.Instructions
       h2 Instructions
-      - var splitArray = recipe.Instructions.split('\n');
-      ol
-        - val = 1;
-        each item in splitArray
-          - str = item;
-          - str = str.replace(/\^_(\w+)/g, "<u><i>$1</i></u>");
-          - str = str.replace(/_(\w+)/g, "<u>$1</u>");
-          - str = str.replace(/\^(\w+)/g, "<i>$1</i>");
-          if (str.substr(0,2) == '. ')
-            li(class='liInstructions', value=val) !{str.substr(2)}
-            - val++;
-          else if (str.substr(0,2) == '* ')
-            h3 !{str.substr(2)}
-            - val = 1;
-          else
-            p !{str}
-            - val = 1;
-      if recipe['How to Photos']
-        - var splitArray = recipe['How to Photos'].split('\n');
-        each item in splitArray
-          img(src=item)
-          br
+      + recipeBody(recipe.Instructions)
+    if recipe['How to Photos']
+      + recipeImages(recipe['How to Photos'])
     if recipe['Post-Notes']
       h2 Post-Notes
-      - str = recipe['Post-Notes'];
-      - str = str.replace(/(?:\r\n|\r|\n)/g, "<br>");
-      - str = str.replace(/_(\w+)/g, "<u>$1</u>");
-      p !{str}
+      + recipeBody(recipe['Pre-Notes'])
     if recipe['Picture']
-      - var splitArray = recipe['Picture'].split('\n');
-      each item in splitArray
-        img(src=item)
-        br
+      + recipeImages(recipe['Picture'])
     if (recipe['Servings'])
       div(class='recipeAttributes') Serves: #{recipe['Servings']}
     if (recipe['Prep Time'])
@@ -85,6 +74,11 @@ body
       div(class='recipeAttributes') Difficulty: #{recipe['Difficulty']}
     if (recipe['Make Ahead'])
       div(class='recipeAttributes') Make Ahead: #{recipe['Make Ahead']}
-          
-  div(class='postpage')
-    a(href='/') Back to Home
+  script.
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-67254139-1', 'auto');
+    ga('send', 'pageview');

@@ -1,8 +1,22 @@
 @import url("common.css");
 
+.page {
+  margin: auto;
+  max-width: 8.5in;
+  padding: 0.25in 0.25in 0.25in 0.25in;
+  background-color: #ffffff;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .page {
+    padding: 0.1in 0.1in 0.1in 0.1in;
+  }
+}
+
 h1 {
   font-size: 2em;
 }
+
 
 h2 {
   padding-top: .2in;
@@ -30,12 +44,8 @@ h3 {
 }
 
 p {
-  padding-left: 0.25in;
+  padding-left: 0.0in;
   padding-bottom: 0.1in;
-}
-
-ul {
-  margin-left: .4in;
 }
 
 ol {
@@ -46,18 +56,17 @@ img {
   width:auto;
 }
 
-.page {
-  margin: auto;
-  max-width: 8.5in;
-  padding: 0.25in 0.25in 0.25in 0.25in;
-  background-color: #ffffff;
-}
 
 .postpage {
   padding: 0.25in 0.25in 0.25in 0.25in;
 }
 
-.liInstructions
+.liUnordered
+{
+  list-style-type: disc;
+}
+
+.liOrdered
 {
   padding-bottom: 0.1in;
 }
