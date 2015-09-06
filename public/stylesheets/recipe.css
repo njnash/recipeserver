@@ -17,7 +17,6 @@ h1 {
   font-size: 2em;
 }
 
-
 h2 {
   padding-top: .2in;
   padding-bottom: .05in;
@@ -54,11 +53,6 @@ ol {
 
 img {
   width:auto;
-}
-
-
-.postpage {
-  padding: 0.25in 0.25in 0.25in 0.25in;
 }
 
 .liUnordered

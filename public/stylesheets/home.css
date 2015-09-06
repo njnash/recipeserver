@@ -43,6 +43,17 @@
   float:left;
 }
 
+@media only screen and (max-device-width: 480px) {
+  .indexPage {
+    padding: 0.05in 0.05in 0.05in 0.05in;
+  }
+
+  .indexPageImage {
+    width: 100%;
+    clear: both;
+  }
+}
+
 .mealsPageImage {
   width: 1.5in;
   float:left;
