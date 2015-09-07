@@ -8,8 +8,8 @@ html
 mixin recipeImages(str)
   - var splitArray = str.split('\n');
   each item in splitArray
-    a(href=item)
-      img(src=item)
+    a(href='/images/Pictures/'+item)
+      img(src='/images/Pictures/'+item)
     br
 
 mixin recipeBody(str)
