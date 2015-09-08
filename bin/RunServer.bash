@@ -4,7 +4,7 @@
 
 while true; do
   bin/www
-  if [$? -eq 0]; then
+  if [ $? == 0 ]; then
     echo "Getting latest code and restarting..."
     git pull
   else
