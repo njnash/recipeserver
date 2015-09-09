@@ -1,6 +1,6 @@
 #!/usr/bin/expect -f
-spawn /home/nash/src/recipeserver/bin/getpicts.helper
+spawn ~nash/src/recipeserver/bin/getpicts.helper
 expect "assword:"
 send "]\r"
-interact
-
+expect eof
+exit
