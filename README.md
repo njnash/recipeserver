@@ -13,6 +13,7 @@
     * babyparse
     * debug
     * jade
+    * file-stream-rotator
 
 I should describe how to configure the server
 

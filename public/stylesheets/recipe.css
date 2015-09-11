@@ -30,6 +30,10 @@ h3 {
   font-size: 1.25em;
 }
 
+body {
+  font: 1em;
+}
+
 .recipeAttributes {
   display: inline-block;
   padding: 0.01in 0.01in 0.01in 0.01in;
