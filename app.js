@@ -9,7 +9,6 @@ var RecipeManager = require('./RecipeManager');
 var fs = require('fs');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 var recipe = require('./routes/recipe');
 var restart = require('./routes/restart');
 
@@ -19,10 +18,11 @@ var logDirectory = path.join(dataDir, 'logs');
 fs.mkdir(logDirectory, 0755, function(err){});
 
 // create a rotating write stream
-var accessLogStream = fileStreamRotator.getStream({
-  filename: logDirectory + '/access-%DATE%.log',
+var logStream = fileStreamRotator.getStream({
+  filename: logDirectory + '/recipes-%DATE%.log',
   frequency: 'daily',
-  verbose: false
+  verbose: false,
+  date_format: "YYYY-MM-DD"
 });
 
 var app = express();
@@ -38,7 +38,7 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(morgan('dev')); // Log to the console
-app.use(morgan('combined', {stream: accessLogStream})); // Log to the file
+app.use(morgan('combined', {stream: logStream})); // Log to the file
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser('audrey\'s great big book of food'));
@@ -56,11 +56,8 @@ app.use(
   }
 );
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', index);
-app.use('/users', users);
-
+app.use(express.static(path.join(__dirname, 'public')));  // Static file
+app.use('/', index); // Home page, search page
 
 // Check on cookies in this function
 // You can do anything up to this point without a valid cookie
@@ -69,12 +66,12 @@ app.use(
     if (req.cookies.ID == null) {
       console.log("ERROR: Cookie should have been set.")
     }
+    next();
   }
-  next();
 );
 
-app.use('/recipe', recipe);
-app.use('/restart', restart);
+app.use('/recipe', recipe);  // A recipe
+app.use('/restart', restart);  // Exit the app
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -82,20 +79,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
 
 // production error handler
 // no stacktraces leaked to user
