@@ -6,16 +6,23 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fileStreamRotator = require('file-stream-rotator');
 var RecipeManager = require('./RecipeManager');
+var IDCookieManager = require('./IDCookieManager');
 var fs = require('fs');
 
 var index = require('./routes/index');
 var recipe = require('./routes/recipe');
 var restart = require('./routes/restart');
+var addCookie = require('./routes/addCookie');
 
 var dataDir = path.join(__dirname,'data');
 fs.mkdir(dataDir, 0755, function(err){});
 var logDirectory = path.join(dataDir, 'logs');
 fs.mkdir(logDirectory, 0755, function(err){});
+
+// view engine setup
+console.log("Starting in " + __dirname);
+var app = express();
+app.set('views', path.join(__dirname, 'views'));
 
 // create a rotating write stream
 var logStream = fileStreamRotator.getStream({
@@ -25,14 +32,12 @@ var logStream = fileStreamRotator.getStream({
   date_format: "YYYY-MM-DD"
 });
 
-var app = express();
+
 global.rm = new RecipeManager('1qfK7ULjezDNXlQRMW55niFDRHz9WEjC4OxYGDgYlSNA');
-// Re-read the recipe data
+// Re-read the recipe data every so often
 setInterval(function(){global.rm.loadRecipeData();}, 15 * 60 * 1000);
 
-// view engine setup
-console.log("Starting in " + __dirname);
-app.set('views', path.join(__dirname, 'views'));
+global.cm = new IDCookieManager(dataDir);
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
@@ -64,14 +69,51 @@ app.use('/', index); // Home page, search page
 app.use(
   function(req, res, next) {
     if (req.cookies.ID == null) {
-      console.log("ERROR: Cookie should have been set.")
+      res.render('error', {
+        message: 'ERROR: Cookie should have been set',
+        error: {}
+      });
+    } else {
+      permission = cm.isCookeValid(req.cookies.ID);
+      if (permission == 0) {
+        // Found, but no permission
+        res.render('error', {
+          message: 'You do not have permission to access this.',
+          error: {}
+        });
+      } else if (permission == -1) {
+        // Not found
+        res.render('unknown', {
+          emailAddress: 'register@audreysgreatbigbookoffood.com',
+          cookie: req.cookies.ID
+        });
+      } else {
+        next();
+      }
     }
-    next();
   }
 );
 
 app.use('/recipe', recipe);  // A recipe
+
+// Past here is administrative calls
+app.use(
+  function(req, res, next) {
+    permission = cm.isCookeValid(req.cookies.ID);
+    if (permission < 2) {
+      // Found, but no permission
+      res.render('error', {
+        message: 'You do not have permission to access this.',
+        error: {}
+      });
+    } else {
+      next();
+    }
+  }
+);
+
 app.use('/restart', restart);  // Exit the app
+app.use('/addCookie', addCookie);  // Exit the app
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
