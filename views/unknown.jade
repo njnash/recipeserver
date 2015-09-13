@@ -9,8 +9,8 @@ body
   div(class='indexPage')
     h1 Unknown User
     | Hello. You are a user unknown to this server. To access these recipes you need to become
-    | registered by emailing the owner.<br>Please send an email requesting access to #{emailAddress}.
-    | Provide this code: #{cookie}. You can click on this 
+    | registered by emailing the owner.<br>Please send an email requesting access to <b>#{emailAddress}.</b>
+    | Provide this code: <b>#{cookie}</b>. You can click on this 
     - var mailto = 'mailto:' + emailAddress;
     - mailto += '?subject=Request%20Recipe%20Access:' + cookie;
     - mailto += "&body=http://www.audreysgreatbigbookoffood.com/addCookie?cookie=" + cookie;
