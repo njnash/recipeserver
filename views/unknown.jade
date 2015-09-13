@@ -10,9 +10,9 @@ body
     h1 Unknown User
     | Hello. You are a user unknown to this server. To access these recipes you need to become
     | registered by emailing the owner.<br>Please send an email requesting access to #{emailAddress}.
-    | Provide this code: 
+    | Provide this code: #{cookie}. You can click on this 
     - var mailto = 'mailto:' + emailAddress;
     - mailto += '?subject=Request%20Recipe%20Access:' + cookie;
     - mailto += "&body=http://www.audreysgreatbigbookoffood.com/addCookie?cookie=" + cookie;
-    a(href=mailto)
-      #{cookie}
+    a(href=mailto) link
+    |  if mailto references work on your computer.
