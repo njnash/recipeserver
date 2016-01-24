@@ -21,7 +21,7 @@ body
           tr
             td(colspan='2')
               input(type='text',onfocus="this.select();",autofocus,name='terms',value=query['terms'],class='searchText' )
-              input(type='submit',Value='Search')
+              input(class='searchButton',type='submit',Value='Search')
           each searchable in aSearchables
             tr
               td(class='fieldLabel') #{searchable.field}:
@@ -43,9 +43,21 @@ body
           h2 #{armFiltered.length} recipe matches your search.
         else
           h2 #{armFiltered.length} recipes match your search.
-        each item in armFiltered
-          p(class='result')
-          a(href='recipe?ID='+item.ID ) #{item.Title}
+        hr
+        table(class='searchTable',border='1',frame='void',rules='rows',border-color='gray')
+          each item in armFiltered
+            tr
+              if item['Picture']
+                td(class='searchImageCell')
+                  a(href='recipe?ID='+item.ID)
+                    img(src='/images/Pictures/'+item['Picture'])
+              else
+                td(class='searchResultCell')
+                  p
+              td(class='searchResultCell')
+                p(class='result')
+                  a(href='recipe?ID='+item.ID ) #{item.Title}
+
   script.
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
