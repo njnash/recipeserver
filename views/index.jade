@@ -10,32 +10,34 @@ body
     div(class='indexPageImage')
       a(href="/")
         img(src='/images/Audrey\'s Great Big Book of Food Small.png', alt='Audrey\'s Great Big Book of Food')
-    div(class='indexPageMessage')
-      p(class='numRecipesMessage') #{armOriginal.length} recipes are online.
-      p(class='instructionsMessage') To search the recipes, enter terms in the box, and/or choose
-                                   | values from one or more of the searchable fields. Click on the
-                                   | image to reset your search results.
-    div(class='indexPageSearch')
-      form
-        table(class='searchTable')
-          tr
-            td(colspan='2')
-              input(type='text',onfocus="this.select();",autofocus,name='terms',value=query['terms'],class='searchText' )
-              input(class='searchButton',type='submit',Value='Search')
-          each searchable in aSearchables
+    div
+      div
+        p(class='numRecipesMessage') #{armOriginal.length} recipes are online.
+        p(class='instructionsMessage') To search the recipes, enter terms in the box, and/or choose
+                                     | values from one or more of the searchable fields. Click on the
+                                     | image to reset your search results.
+      div
+        form
+          table(class='searchTable')
             tr
-              td(class='fieldLabel') #{searchable.field}:
-              td(class='fieldSelector')
-                  select(name=searchable.field,style='width:100%',onchange="form.submit();")
-                    if (query[searchable.field] == null || query[searchable.field].length == 0)
-                      option(value='',selected)
-                    else
-                      option(value='')
-                    each envalue in searchable.enums
-                      if (query[searchable.field] != null && query[searchable.field] == envalue)
-                        option(value=envalue,selected) #{envalue}
+              td(colspan='2',style='padding-top:0.1in; padding-bottom:0.1in')
+                div(style='margin:auto')
+                  input(type='text',onfocus="this.select();",autofocus,name='terms',value=query['terms'],class='searchText',style='margin-left:0.2in' )
+                  input(class='searchButton',type='submit',Value='Search',style='vertical-align:top;margin-left:0.1in')
+            each searchable in aSearchables
+              tr
+                td(class='fieldLabel') #{searchable.field}:
+                td(class='fieldSelector')
+                    select(name=searchable.field,style='width:100%',onchange="form.submit();")
+                      if (query[searchable.field] == null || query[searchable.field].length == 0)
+                        option(value='',selected)
                       else
-                        option(value=envalue) #{envalue}
+                        option(value='')
+                      each envalue in searchable.enums
+                        if (query[searchable.field] != null && query[searchable.field] == envalue)
+                          option(value=envalue,selected) #{envalue}
+                        else
+                          option(value=envalue) #{envalue}
     div(class='indexPageResults')
       if (armOriginal.length != armFiltered.length || query['terms'] == 'a')
         hr
@@ -44,7 +46,7 @@ body
         else
           h2 #{armFiltered.length} recipes match your search.
         hr
-        table(class='searchTable',border='1',frame='void',rules='rows',border-color='gray')
+        table(width='100%',border='1',frame='void',rules='rows',border-color='gray')
           each item in armFiltered
             tr
               if item['Picture']
