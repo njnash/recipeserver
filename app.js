@@ -48,12 +48,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser('audrey\'s great big book of food'));
 
+function generateUUID() {
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+    return uuid;
+};
+
 // Add a cookie here if it doesn't exist
 app.use(
   function(req, res, next) {
     if (req.cookies.ID == null) {
       console.log("No cookies");
-      var newCookie = '' + Date.now();
+      var newCookie = '' + generateUUID();
       res.cookie('ID', newCookie, { expires: new Date(Date.now() + (10 * 365 * 24 * 60 * 60) * 1000) });
       req.cookies.ID = newCookie;
     }

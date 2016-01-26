@@ -6,13 +6,27 @@ html
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
 
 body
-  div(class='indexPage')
-    h1 Unknown User
-    | Hello. You are a user unknown to this server. To access these recipes you need to become
-    | registered by emailing the owner.<br>Please send an email requesting access to <b>#{emailAddress}.</b>
-    | Provide this code: <b>#{cookie}</b>. You can click on this 
+  div(style='padding: 0.1in 0.25in 0.25in 0.1in;')
     - var mailto = 'mailto:' + emailAddress;
     - mailto += '?subject=Request%20Recipe%20Access:' + cookie;
     - mailto += "&body=http://www.audreysgreatbigbookoffood.com/addCookie?cookie=" + cookie;
-    a(href=mailto) link
-    |  if mailto references work on your computer.
+    h1 Audrey's Great Book of Food - Access Instructions
+    p
+      &nbsp;
+    p
+      | Welcome!<br><br>You are a user unknown to this server. Access to the recipes here is restricted.
+      | Access must be granted.
+    p
+      &nbsp;
+    p
+      a(href=mailto) Click on this link
+      |  to send an email to the website's owners.
+    p
+      &nbsp;
+    p
+      | If that does not work, then send an email to <b>#{emailAddress}.</b>
+      | Provide this code: <b>#{cookie}</b>. 
+    p
+      &nbsp;
+    p
+      | Thank you! And we hope you enjoy the website.
