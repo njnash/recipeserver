@@ -32,6 +32,7 @@ router.get('/', function(req, res, next) {
   // Search conditions
   var armFiltered = global.rm.getRecipes();
   var aSearchables = global.rm.getSearchables();
+  var permission = global.cm.isCookeValid(req.cookies.ID);
 
   if (req.query['terms'] != null && req.query['terms'].length > 0) {
     var aFreeText = req.query['terms'].split(' ');
@@ -51,7 +52,8 @@ router.get('/', function(req, res, next) {
       armFiltered: armFiltered,
       aSearchables: aSearchables,
       query: req.query,
-      pretty:true
+      pretty:true,
+      permission:permission
     }
   );
 });

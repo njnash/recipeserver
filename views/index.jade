@@ -49,13 +49,14 @@ body
         table(width='100%',border='1',frame='void',rules='rows',border-color='gray')
           each item in armFiltered
             tr
-              if item['Picture']
-                td(class='searchImageCell')
-                  a(href='recipe?ID='+item.ID)
-                    img(src='/images/Pictures/'+item['Picture'])
-              else
-                td(class='searchResultCell')
-                  p
+              if (permission != null && permission > 0)
+                if item['Picture']
+                  td(class='searchImageCell')
+                    a(href='recipe?ID='+item.ID)
+                      img(src='/images/Pictures/'+item['Picture'])
+                else
+                  td(class='searchResultCell')
+                    p
               td(class='searchResultCell')
                 p(class='result')
                   a(href='recipe?ID='+item.ID ) #{item.Title}
