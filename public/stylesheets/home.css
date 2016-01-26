@@ -106,17 +106,6 @@ select {
   float:left;
 }
 
-@media only screen and (max-device-width: 480px) {
-  .indexPage {
-    padding: 0.05in 0.05in 0.05in 0.05in;
-  }
-
-  .indexPageImage {
-    width: 100%;
-    clear: both;
-  }
-}
-
 .mealsPageImage {
   width: 1.5in;
   float:left;
@@ -126,4 +115,17 @@ select {
   clear:left;
   margin-left: 0.5in;
   margin-right: 0.5in;
+}
+
+@media only screen and (max-device-width: 736px) {
+  /* For smartphones */
+  .indexPageResults {
+    margin-left: 0.1in;
+    margin-right: 0.1in;
+  }
+
+  .indexPageImage {
+    width: 100%;
+    clear: both;
+  }
 }
