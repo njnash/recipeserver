@@ -5,6 +5,12 @@ getter.get('/',
   function(req, res, next) {
 
     var id = req.query.ID;
+    var hidePicts = req.query.hidePicts;
+    if (hidePicts == 'true') {
+      hidePicts = true;
+    } else {
+      hidePicts = false;
+    }
     if (id == null) {
       res.render('error', {
         message: 'No ID given',
@@ -21,7 +27,9 @@ getter.get('/',
         res.render('recipe',
                     {
                       recipe:recipe,
-                      pretty:true
+                      id:id,
+                      pretty:true,
+                      hidePicts: hidePicts
                     }
                   );
       }

@@ -5,12 +5,15 @@ html
     link(rel='stylesheet', href='/stylesheets/recipe.css')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
 
+- var hasPictures = false;
 mixin recipeImages(str)
   - var splitArray = str.split('\n');
   each item in splitArray
-    a(href='/images/Pictures/'+item)
-      img(src='/images/Pictures/'+item)
-    br
+    - hasPictures = true;
+    if (hidePicts != true)
+      a(href='/images/Pictures/'+item)
+        img(src='/images/Pictures/'+item)
+      br
 
 mixin recipeBody(str)
   - var splitArray = str.split('\n');
@@ -75,6 +78,13 @@ body
       div(class='recipeAttributes') Difficulty: #{recipe['Difficulty']}
     if (recipe['Make Ahead'])
       div(class='recipeAttributes') Make Ahead: #{recipe['Make Ahead']}
+    if (hasPictures)
+      if (hidePicts == true)
+        div(style="font-size:0.8em;padding-top:0.1in;")
+          a(href='/recipe?ID='+id) Show Pictures
+      else
+        div(style="font-size:0.8em;padding-top:0.1in;")
+          a(href='/recipe?hidePicts=true&ID='+id) Hide Pictures
   script.
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
