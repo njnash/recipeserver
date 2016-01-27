@@ -12,7 +12,7 @@ body {
   color: black;
 }
 
-@media only screen and (max-device-width: 1360px) {
+@media only screen and (max-device-width: 1024px) {
   /* For general iPad layouts */
   body {
     font-size: 1.7em;
