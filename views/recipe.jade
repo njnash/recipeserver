@@ -4,6 +4,7 @@ html
     title #{recipe.Title}
     link(rel='stylesheet', href='/stylesheets/recipe.css')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    meta(name='robots' content='noindex')
 
 - var hasPictures = false;
 mixin recipeImages(str)
@@ -40,6 +41,9 @@ mixin recipeBody(str)
         - val = 1;
 
 body
+  div(class='header no-print')
+    a(href="/")
+      img(src="images/Audrey's Great Big Book of Food Title Small Alpha.png" style="width:auto;height:auto;max-width:100%;max-height:100%")
   div(class='page')
     h1 #{recipe.Title}
     if (recipe.Source)

@@ -12,6 +12,13 @@ body {
   color: black;
 }
 
+.header {
+  margin-top: 0.1in;
+  margin-bottom: 0.0in;
+  margin-left: 0.5in;
+  height:60px;
+}
+
 @media only screen and (max-device-width: 1024px) {
   /* For general iPad layouts */
   body {
@@ -77,4 +84,12 @@ img {
 .liOrdered
 {
   padding-bottom: 0.1in;
+}
+
+@media print
+{
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
 }
