@@ -20,8 +20,36 @@ function RecipeManager(googleSpreadsheetID)
     {field:'Serving Temp',enums:[]},
     {field:'Meals',enums:[]},
   ];
-
   this.loadRecipeData();
+}
+
+RecipeManager.prototype.textSearch = function(arm, str, prop)
+{
+  if (arm == null) {
+    arm = this.getRecipes();
+  }
+  if (str == null || str.length == 0)
+    return arm;
+  var regex = new RegExp(str, "i");
+  var armReturn = [];
+  var objArray = [];
+  if (prop != null) {
+    objArray[prop] = 0;
+  }
+  for (var i = 0; i < arm.length; i++) {
+    if (prop == null) {
+      objArray = arm[i];
+    }
+    for (var prop in objArray) {
+      if (arm[i].hasOwnProperty(prop)) {
+        if (arm[i][prop].match(regex)) {
+          armReturn.push(arm[i]);
+          break;
+        }
+      }
+    }
+  }
+  return armReturn;
 }
 
 RecipeManager.prototype.getRecipes = function()

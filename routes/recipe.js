@@ -4,7 +4,16 @@ var getter = express.Router();
 getter.get('/',
   function(req, res, next) {
 
-    var id = req.query.ID;
+    var title = req.query.title;
+    var id = null;
+    if (title == null) {
+      id = req.query.ID;
+    } else {
+      results = global.rm.textSearch(null,title,'Title');
+      if (results != null && results.length == 1) {
+        id = results[0].ID;
+      }
+    }
     var hidePicts = req.query.hidePicts;
     if (hidePicts == 'true') {
       hidePicts = true;
