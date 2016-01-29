@@ -7,13 +7,15 @@ html
     meta(name='robots' content='noindex')
 
 - var hasPictures = false;
-mixin recipeImages(str)
+mixin recipeImages(str, imageNames)
   - var splitArray = str.split('\n');
+  if (splitArray.length > 0 && hidePicts != true)
+    h2 #{imageNames}
   each item in splitArray
     - hasPictures = true;
     if (hidePicts != true)
       a(href='/images/Pictures/'+item)
-        img(src='/images/Pictures/'+item, style="max-width: 5in;margin-left: 0.1in;")
+        img(src='/images/Pictures/'+item, style="max-width: 6in;margin-left: 0.1in;")
       br
 
 mixin recipeBody(str)
@@ -59,12 +61,12 @@ body
       h2 Instructions
       + recipeBody(recipe.Instructions)
     if recipe['How to Photos']
-      + recipeImages(recipe['How to Photos'])
+      + recipeImages(recipe['How to Photos'], 'How to Photos')
     if recipe['Post-Notes']
       h2 Post-Notes
       + recipeBody(recipe['Post-Notes'])
     if recipe['Picture']
-      + recipeImages(recipe['Picture'])
+      + recipeImages(recipe['Picture'], 'Completed Recipe')
     if (recipe['Servings'])
       div(class='recipeAttributes') Serves: #{recipe['Servings']}
     if (recipe['Prep Time'])

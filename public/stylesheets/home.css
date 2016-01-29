@@ -91,7 +91,13 @@ select {
 }
 
 .instructionsMessage {
-  padding-top: .25in;
+  padding-top: .18in;
+}
+
+.footer {
+  margin-top:0.1in;
+  margin-left:0.8in;
+  font-size: 0.8em;
 }
 
 .indexPage {

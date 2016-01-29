@@ -20,6 +20,7 @@ function RecipeManager(googleSpreadsheetID)
     {field:'Serving Temp',enums:[]},
     {field:'Meals',enums:[]},
   ];
+  this.dateString = "";
   this.loadRecipeData();
 }
 
@@ -102,6 +103,11 @@ RecipeManager.prototype.buildSearchIndices = function()
   }
 }
 
+RecipeManager.prototype.getDate = function()
+{
+  return this.dateString;
+}
+
 RecipeManager.prototype.loadRecipeData = function()
 {
   var url = 'https://docs.google.com/spreadsheets/d/' + this.googleSpreadsheetID + '/pub?output=csv';
@@ -121,8 +127,30 @@ RecipeManager.prototype.loadRecipeData = function()
           var rows = parsed.data;
           var header = rows[0];
           var keywords = [];
+          var dataColumn = -1;
+          var offset = 0;
+          rm.dateString = "";
           for (var i = 0; i < header.length; i++) {
-            keywords.push(header[i]);
+            if (header[i] == 'Data') { // Skip the Data Column
+              dataColumn = i;
+              offset = 1;
+              continue;
+            }
+            keywords.push(header[i - offset]);
+          }
+          if (dataColumn > 0) {
+            // Should be the date string in the firs row of the Data column
+            var date = new Date(rows[1][dataColumn]);
+            var hour = date.getHours();
+            var ampm = "AM";
+            if (hour > 12) {
+              ampm = "PM";
+              if (hour > 13) hour = hour - 12;
+            }
+            if (hour == 0) hour = 12;
+            rm.dateString = "" + (date.getMonth()+1) + "/" + (date.getDate()) + "/" + (date.getFullYear())
+                              + " " + hour + ":" + date.getMinutes() + ":" + date.getSeconds() + " " + ampm;
+            console.log("Got date: " + rm.dateString);
           }
           var newRecipes = [];
           for (var i = 1; i < rows.length; i++) {

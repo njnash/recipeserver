@@ -19,7 +19,6 @@ router.get('/', function(req, res, next) {
   for (var i = 0; i < aSearchables.length; i++ ) {
     armFiltered = global.rm.textSearch(armFiltered, req.query[aSearchables[i].field], aSearchables[i].field);
   }
-
   res.render('index',
     { title: 'Audrey\'s Great Big Book of Food',
       armOriginal: global.rm.getRecipes(),
@@ -27,7 +26,8 @@ router.get('/', function(req, res, next) {
       aSearchables: aSearchables,
       query: req.query,
       pretty:true,
-      permission:permission
+      permission:permission,
+      date:global.rm.getDate()
     }
   );
 });
