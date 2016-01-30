@@ -40,7 +40,6 @@ setInterval(function(){global.rm.loadRecipeData();}, 15 * 60 * 1000);
 global.cm = new IDCookieManager(dataDir);
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(morgan('dev')); // Log to the console
 app.use(morgan('combined', {stream: logStream})); // Log to the file
@@ -75,7 +74,7 @@ app.use(express.static(path.join(__dirname, 'public')));  // Static file
 app.use('/', index); // Home page, search page
 
 // Check on cookies in this function
-// You can do anything up to this point without a valid cookie
+// You can't do anything beyond this point without a cookie in the permissions file.
 app.use(
   function(req, res, next) {
     if (req.cookies.ID == null) {
@@ -103,6 +102,9 @@ app.use(
     }
   }
 );
+
+// If you get here with permission then redirect to home page
+app.use('/welcome',   function(req, res, next) { res.redirect('/'); } );
 
 app.use('/recipe', recipe);  // A recipe
 
