@@ -66,7 +66,7 @@ body
       h2 Post-Notes
       + recipeBody(recipe['Post-Notes'])
     if recipe['Picture']
-      + recipeImages(recipe['Picture'], 'Completed Recipe')
+      + recipeImages(recipe['Picture'], 'Picture of Recipe')
     if (recipe['Servings'])
       div(class='recipeAttributes') Serves: #{recipe['Servings']}
     if (recipe['Prep Time'])
