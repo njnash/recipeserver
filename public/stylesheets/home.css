@@ -62,6 +62,11 @@ input[type="submit"]:active {
   padding: 0.0in 0.25in 0.05in 0.25in;
 }
 
+.underresult {
+  font-size: 0.8em;
+  padding: 0.0in 0.25in 0.05in 0.25in;
+}
+
 .searchText {
   font-size: 1.4em;
 }

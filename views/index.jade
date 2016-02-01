@@ -66,6 +66,8 @@ body
               td(class='searchResultCell')
                 p(class='result')
                   a(href='recipe?ID='+item.ID ) #{item.Title}
+                    br
+                    p(class='underresult') ##{item.ID}
   div(class="footer")
     a(href='about.html' ) About This Website
   script.
