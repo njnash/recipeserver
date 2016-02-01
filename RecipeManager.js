@@ -158,7 +158,15 @@ RecipeManager.prototype.loadRecipeData = function()
             for (var j=0;j<keywords.length;j++) {
               obj[keywords[j]] = rows[i][j];
             }
-            newRecipes[i-1] = obj;
+            if (obj.Title == null || obj.Title == '') {
+              console.log("Skipping: " + obj.ID)
+              continue;
+            }
+            if (obj.ID == null || obj.ID == '') {
+              console.log("Skipping: " + obj.Title)
+              continue;
+            }
+            newRecipes.push(obj);
           }
           rm.recipes = newRecipes;
           rm.recipes.sort( function(a,b) {
