@@ -148,8 +148,12 @@ RecipeManager.prototype.loadRecipeData = function()
               if (hour > 13) hour = hour - 12;
             }
             if (hour == 0) hour = 12;
+            var minute = date.getMinutes();
+            if (minute < 10) {
+              minute = '0' + minute;
+            }
             rm.dateString = "" + (date.getMonth()+1) + "/" + (date.getDate()) + "/" + (date.getFullYear())
-                              + " " + hour + ":" + date.getMinutes() + ":" + date.getSeconds() + " " + ampm;
+                              + " " + hour + ":" + minute + ":" + date.getSeconds() + " " + ampm;
             console.log("Got date: " + rm.dateString);
           }
           var newRecipes = [];
