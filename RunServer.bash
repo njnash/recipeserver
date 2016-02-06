@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Runs bin/www
+# Runs server.js
 
 while true; do
-  bin/www
+  ./server.js
   if [ $? == 0 ]; then
     echo "Getting latest code and restarting..."
     git pull

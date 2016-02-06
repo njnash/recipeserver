@@ -19,6 +19,15 @@ router.get('/', function(req, res, next) {
   for (var i = 0; i < aSearchables.length; i++ ) {
     armFiltered = global.rm.textSearch(armFiltered, req.query[aSearchables[i].field], aSearchables[i].field);
   }
+  if (req.query['terms'] == 'a') {// Special sort by ID for debugging
+    armFiltered.sort( function(a,b) {
+
+                       if (parseInt(a.ID) > parseInt(b.ID)) return 1;
+                       if (parseInt(a.ID) < parseInt(b.ID)) return -1;
+                       return 0;
+                     }
+                   );
+  }
   res.render('index',
     { title: 'Audrey\'s Great Big Book of Food',
       armOriginal: global.rm.getRecipes(),
