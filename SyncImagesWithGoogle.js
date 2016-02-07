@@ -182,8 +182,7 @@ function gotGoogleAndlocalfiles( googlefiles, localfiles )
 				console.log("C: " + (g != null ? g.name : "null") + " " + (l != null ? l.name : "null"));
 				console.log("Google date after " + g.modifiedTime + "   " + l.modifiedTime);
 				gets.push({action:'update', g:g, l:l});
-			}
-			if (g.size != l.size) {
+			} else if (g.size != l.size) {
 				console.log("C: " + (g != null ? g.name : "null") + " " + (l != null ? l.name : "null"));
 				console.log("Size wrong, update");
 				gets.push({action:'update', g:g, l:l});
