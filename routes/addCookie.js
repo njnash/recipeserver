@@ -10,6 +10,8 @@ getter.get('/',
       if (c != -1) {
         res.send('Cookie ' + req.query['cookie'] + ' already exists')
       } else {
+        who = global.cm.isCookeValid(req.query['who']);
+        if (who == null) who = '';
         global.cm.addCookie(req.query['cookie'],1);
         res.send('Cookie ' + req.query['cookie'] + ' added')
       }

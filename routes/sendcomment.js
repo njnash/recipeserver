@@ -7,54 +7,43 @@ var transporter = nodemailer.createTransport('smtps://rvnash%40gmail.com:roislgb
 getter.get('/',
   function(req, res, next) {
 
-    var title = req.query.title;
-    var id = null;
-    if (title == null) {
-      id = req.query.ID;
-    } else {
-      results = global.rm.textSearch(null,title,'Title');
-      if (results != null && results.length == 1) {
-        id = results[0].ID;
-      }
-    }
-    if (id == null) {
-      res.render('error', {
-        message: 'No ID given',
-        error: {}
-      });
-    } else {
+    var id = req.query.ID;
+    var recipe;
+    if (id != null) {
       var recipe = global.rm.getRecipeByID(id);
       if (recipe == null) {
         res.render('error', {
           message: 'No recipe with the ID\'' + id + '\'',
           error: {}
         });
-      } else {
-        // setup e-mail data with unicode symbols
-        var mailOptions = {
-            from: 'Recipe Server <server@audreysgreatbigbookoffood.com>', // sender address
-            to: 'comments@audreysgreatbigbookoffood.com', // list of receivers
-            subject: 'Comment on: ' + recipe.Title, // Subject line
-            text: 'From user with cookie: ' + req.cookies.ID + '\n'
-                  + 'Name or email address: ' + req.query.name + '\n'
-                  + 'Text of Comment:\n' + req.query.comment // plaintext body
-        };
-        // send mail with defined transport object
-        transporter.sendMail(mailOptions, function(error, info){
-            if(error){
-                return console.log(error);
-            }
-            console.log('Message sent: ' + info.response);
-        });
-        res.render('sendcomment',
-                    {
-                      recipe:recipe,
-                      id:id,
-                      pretty:true
-                    }
-                  );
       }
     }
+    var name = global.cm.getCookieRecord(req.cookies.ID);
+    if (name) name = name.who;
+    // setup e-mail data with unicode symbols
+    var mailOptions = {
+        from: 'Recipe Server <server@audreysgreatbigbookoffood.com>', // sender address
+        to: 'comments@audreysgreatbigbookoffood.com', // list of receivers
+        subject: 'Comment on: ' + (recipe ? recipe.Title: 'AGBBOF'), // Subject line
+        text: 'From user with cookie: ' + req.cookies.ID + '\n'
+        + 'Name associated with cookie: ' + name + '\n'
+        + 'Name or email address: ' + req.query.name + '\n'
+              + 'Text of Comment:\n' + req.query.comment // plaintext body
+    };
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+    });
+    res.render('sendcomment',
+                {
+                  recipe:recipe,
+                  id:id,
+                  pretty:true
+                }
+              );
   }
 );
 

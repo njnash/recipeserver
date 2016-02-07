@@ -10,7 +10,7 @@ body
   div(style='padding: 0.1in 0.25in 0.25in 0.1in;')
     - var mailto = 'mailto:' + emailAddress;
     - mailto += '?subject=Request%20Recipe%20Access:' + cookie;
-    - mailto += "&body=http://www.audreysgreatbigbookoffood.com/addCookie?cookie=" + cookie;
+    - mailto += "&body=" + escape("http://www.audreysgreatbigbookoffood.com/addCookie?cookie=" + cookie + "&who=");
     h1 Audrey's Great Book of Food - Access Instructions
     p
       &nbsp;

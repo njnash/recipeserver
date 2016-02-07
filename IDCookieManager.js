@@ -25,9 +25,10 @@ IDCookieManager.prototype.readCookies = function()
 }
 
 // Permissions: -1=not found, 0=none, 1=normal, 2=admin
-IDCookieManager.prototype.addCookie = function(newCookie,permission)
+IDCookieManager.prototype.addCookie = function(newCookie,permission, who)
 {
-  this.cookies.push({cookie:newCookie, permissions:permission})
+  if (who == null) who = '';
+  this.cookies.push({cookie:newCookie, permissions:permission, who:who})
   fs.writeFile(this.cookieFile, JSON.stringify(this.cookies, null, 2));
 }
 
@@ -37,6 +38,14 @@ IDCookieManager.prototype.isCookeValid = function(newCookie)
     if (this.cookies[i].cookie == newCookie) return this.cookies[i].permissions;
   }
   return -1;
+}
+
+IDCookieManager.prototype.getCookieRecord = function(cookie)
+{
+  for (i=0;i<this.cookies.length;i++) {
+    if (this.cookies[i].cookie == cookie) return this.cookies[i];
+  }
+  return null;
 }
 
 

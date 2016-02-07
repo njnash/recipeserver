@@ -14,28 +14,23 @@ getter.get('/',
         id = results[0].ID;
       }
     }
-    if (id == null) {
-      res.render('error', {
-        message: 'No ID given',
-        error: {}
-      });
-    } else {
-      var recipe = global.rm.getRecipeByID(id);
+    var recipe;
+    if (id != null) {
+      recipe = global.rm.getRecipeByID(id);
       if (recipe == null) {
         res.render('error', {
           message: 'No recipe with the ID\'' + id + '\'',
           error: {}
         });
-      } else {
-        res.render('comment',
-                    {
-                      recipe:recipe,
-                      id:id,
-                      pretty:true
-                    }
-                  );
       }
     }
+    res.render('comment',
+                {
+                  recipe:recipe,
+                  id:id,
+                  pretty:true
+                }
+              );
   }
 );
 
