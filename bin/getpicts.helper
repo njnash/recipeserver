@@ -1,1 +1,0 @@
-rsync -av --delete -e ssh "nash@richsmacbook:/Users/nash/gdrive/Audrey\'s\ Great\ Big\ Book\ of\ Food/Pictures" ~nash/src/recipeserver/public/images

@@ -1,6 +1,0 @@
-#!/usr/bin/expect -f
-spawn ~nash/src/recipeserver/bin/getpicts.helper
-expect "assword:"
-send "]\r"
-expect eof
-exit

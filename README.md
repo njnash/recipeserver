@@ -14,8 +14,13 @@
     * npm install jade
     * npm install file-stream-rotator
     * npm install nodemailer
-    * ### pending ... npm install googleapis
-    * ### pending ... npm install google-auth-library
+    * npm install googleapis
+    * npm install google-auth-library
+
+To control server on toshiba-1
+  stop recipe
+  restart recipe
+  start recipe
 
 TODO: Describe how to configure the server
 
