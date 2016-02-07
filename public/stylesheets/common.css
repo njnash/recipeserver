@@ -20,10 +20,12 @@ img {
 /* unvisited link */
 a:link {
   text-decoration: none;
+  color: blue;
 }
 
 /* visited link */
 a:visited {
+  color: blue;
 }
 
 /* mouse over link */
