@@ -91,6 +91,8 @@ body
       div(class='recipeAttributes') Difficulty: #{recipe['Difficulty']}
     if (recipe['Make Ahead'])
       div(class='recipeAttributes') Make Ahead: #{recipe['Make Ahead']}
+    if (recipe['Meals'])
+      div(class='recipeAttributes') Meals: #{recipe['Meals']}
     if (hasPictures)
       if (hidePicts == true)
         div(style="font-size:0.8em;padding-top:0.1in;")
