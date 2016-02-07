@@ -57,9 +57,10 @@ body
             tr
               if (permission != null && permission > 0)
                 if item['Picture']
+                  - var pictArray = item['Picture'].split('\n');
                   td(class='searchImageCell')
                     a(href='recipe?ID='+item.ID)
-                      img(src='/images/Pictures/'+item['Picture'])
+                      img(src='/images/Pictures/' + pictArray[0])
                 else
                   td(class='searchResultCell')
                     p
