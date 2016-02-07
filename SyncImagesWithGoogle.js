@@ -6,7 +6,7 @@ var fs = require('fs');
 var util = require("util");
 var path = require('path');
 
-var syncDirectory=path.join(__dirname,'public/images/Pictures/');
+var syncDirectory=path.join(__dirname,'public/images/Pictures');
 var SCOPES = ['https://www.googleapis.com/auth/drive'];
 var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
 		 process.env.USERPROFILE) + '/.credentials/';
@@ -113,7 +113,7 @@ function updateFromGoogle(g)
 {
 	var localFile = syncDirectory + "/" + g.name;
 	var dest = fs.createWriteStream(localFile);
-	console.log("Downloading: " + localFile);
+	console.log("Downloading: " + g.name);
 	drive.files.get({
 							 auth:globalAuth,
 						   fileId: g.id,
