@@ -14,6 +14,8 @@ var fs = require('fs');
 
 var index = require('./routes/index');
 var recipe = require('./routes/recipe');
+var comment = require('./routes/comment');
+var sendcomment = require('./routes/sendcomment');
 var restart = require('./routes/restart');
 var addCookie = require('./routes/addCookie');
 
@@ -110,6 +112,8 @@ app.use(
 app.use('/welcome',   function(req, res, next) { res.redirect('/'); } );
 
 app.use('/recipe', recipe);  // A recipe
+app.use('/comment', comment);  // A recipe
+app.use('/sendcomment', sendcomment);  // A recipe
 
 // Past here is administrative calls
 app.use(

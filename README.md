@@ -13,6 +13,9 @@
     * npm install debug
     * npm install jade
     * npm install file-stream-rotator
+    * npm install nodemailer
+    * ### pending ... npm install googleapis
+    * ### pending ... npm install google-auth-library
 
 TODO: Describe how to configure the server
 
