@@ -24,7 +24,9 @@ mixin recipeBody(str)
   ol
     each item in splitArray
       - str = item;
+      - str = str.replace(/\$_\^(\w+)/g, "<b><u><i>$1</i></u></b>");
       - str = str.replace(/\$_(\w+)/g, "<b><i>$1</i></b>");
+      - str = str.replace(/\$\^(\w+)/g, "<b><i>$1</i></b>");
       - str = str.replace(/\^_(\w+)/g, "<u><i>$1</i></u>");
       - str = str.replace(/\$(\w+)/g, "<b>$1</b>");
       - str = str.replace(/_(\w+)/g, "<u>$1</u>");
