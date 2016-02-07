@@ -113,14 +113,14 @@ function updateFromGoogle(g)
 {
 	var localFile = syncDirectory + "/" + g.name;
 	var dest = fs.createWriteStream(localFile);
-	console.log("Starting download to: " + localFile);
+	console.log("Downloading: " + localFile);
 	drive.files.get({
 							 auth:globalAuth,
 						   fileId: g.id,
 						   alt: 'media'
 						})
 						.on('end', function() {
-						  console.log('Downloaded: ' + g.name);
+						  //console.log('Downloaded: ' + g.name);
 						})
 						.on('error', function(err) {
 						  console.log('Error during download', err);
@@ -144,7 +144,6 @@ function executeFileGets( whatToDo )
 	var thisInterval = setInterval(function() {
 		var action = whatToDo[0];
 		whatToDo.splice(0,1);
-		console.log("Copying from google: " + action.g.name);
 		updateFromGoogle(action.g);
 		if (whatToDo.length == 0) {
 			clearInterval(thisInterval);
