@@ -1,10 +1,5 @@
 @import url("common.css");
 
-body {
-  /* For normal web pages */
-  font-size: 1.0em;
-}
-
 .page {
   margin: auto;
   padding: 0.1in 0.25in 0.25in 0.1in;
@@ -33,7 +28,7 @@ h2 {
 }
 
 h3 {
-  margin-left: -0.2in;
+  margin-left: -0.3in;
   padding-top: 0.03in;
   padding-bottom: 0in;
   font-size: 1.4em;
@@ -79,7 +74,7 @@ img {
   body {
     font-size: 1.6em;
   }
-  
+
   .liUnordered
   {
     margin-left: 0.2in;
@@ -97,6 +92,15 @@ img {
     font-size: 1.0em;
   }
   .header {
+    margin-left: 0.0in;
+  }
+  .liUnordered
+  {
+    margin-left: 0.0in;
+  }
+
+  .liOrdered
+  {
     margin-left: 0.0in;
   }
 }
