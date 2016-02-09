@@ -9,7 +9,7 @@ getter.get('/',
 
     var id = req.query.ID;
     var recipe;
-    if (id != null) {
+    if (id != null && id != '') {
       var recipe = global.rm.getRecipeByID(id);
       if (recipe == null) {
         res.render('error', {
