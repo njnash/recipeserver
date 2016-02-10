@@ -31,7 +31,13 @@ RecipeManager.prototype.textSearch = function(arm, str, prop)
   }
   if (str == null || str.length == 0)
     return arm;
-  var regex = new RegExp(str, "i");
+  var regex;
+  if (prop == null) {
+    regex = new RegExp(str, "i");
+  } else {
+    // For a property search require exact matches.
+    regex = new RegExp("(^|\n)" + str + "(\n|$)", "i");
+  }
   var armReturn = [];
   var objArray = [];
   if (prop != null) {
