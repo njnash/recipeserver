@@ -28,6 +28,7 @@ getter.get('/',
                 {
                   recipe:recipe,
                   id:id,
+                  cookie:req.cookies.ID,
                   pretty:true
                 }
               );
