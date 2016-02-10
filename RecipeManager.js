@@ -13,7 +13,7 @@ function RecipeManager(googleSpreadsheetID)
     {field:'Course',enums:[]},
     {field:'Key Ingredient',enums:[]},
     {field:'Type of Food',enums:[]},
-    {field:'Ethnicity',enums:[]},
+    {field:'Ethnicity/Origin',enums:[]},
     {field:'Themes/Holidays',enums:[]},
     {field:'Prep Method',enums:[]},
     {field:'Difficulty',enums:[]},
