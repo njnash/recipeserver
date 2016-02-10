@@ -5,7 +5,7 @@ html
     link(rel='stylesheet', href='/stylesheets/home.css')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     meta(name='robots' content='noindex')
-
+    script(src="jquery-2.2.0.min.js")
 body
   div(class='indexPage')
     div(class='indexPageImage')
@@ -23,7 +23,7 @@ body
                                      | values from one or more of the searchable fields. Click on the
                                      | image to reset your search results.
       div
-        form
+        form(id="searchForm")
           table(class='searchTable')
             tr
               td(colspan='2',style='padding-top:0.1in; padding-bottom:0.1in')
@@ -34,7 +34,7 @@ body
               tr
                 td(class='fieldLabel') #{searchable.field}:
                 td(class='fieldSelector')
-                    select(name=searchable.field,style='width:100%',onchange="form.submit();")
+                    select(name=searchable.field,style='width:100%',onchange="submitForm()")
                       if (query[searchable.field] == null || query[searchable.field].length == 0)
                         option(value='',selected)
                       else
@@ -73,6 +73,15 @@ body
     a(href='about.html' ) About
     | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     a(href="comment") Comment
+  script.
+    function submitForm() {
+      $( "#searchForm" ).submit();
+    }
+    $( "#searchForm" ).submit(function( event ) {
+        $(':input', this).each(function() {
+            this.disabled = !($(this).val());
+        });
+    });
   script.
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
