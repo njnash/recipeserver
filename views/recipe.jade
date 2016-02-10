@@ -74,27 +74,27 @@ body
     if recipe['Picture']
       + recipeImages(recipe['Picture'], 'Picture of Recipe')
     if (recipe['Servings'])
-      div(class='recipeAttributes') Serves: #{recipe['Servings']}
+      div(class='recipeAttributes') Serves: #{recipe['Servings'].replace(/\n/g,',')}
     if (recipe['Prep Time'])
-      div(class='recipeAttributes') Prep Time: #{recipe['Prep Time']}
+      div(class='recipeAttributes') Prep Time: #{recipe['Prep Time'].replace(/\n/g,',')}
     if (recipe['Cook Time'])
-      div(class='recipeAttributes') Cook Time: #{recipe['Cook Time']}
+      div(class='recipeAttributes') Cook Time: #{recipe['Cook Time'].replace(/\n/g,',')}
     if (recipe['Course'])
-      div(class='recipeAttributes') Course: #{recipe['Course']}
+      div(class='recipeAttributes') Course: #{recipe['Course'].replace(/\n/g,',')}
     if (recipe['Type of Food'])
-      div(class='recipeAttributes') Type of Food: #{recipe['Type of Food']}
+      div(class='recipeAttributes') Type of Food: #{recipe['Type of Food'].replace(/\n/g,',')}
     if (recipe['Ethnicity/Origin'])
-      div(class='recipeAttributes') Ethnicity/Origin: #{recipe['Ethnicity/Origin']}
+      div(class='recipeAttributes') Ethnicity/Origin: #{recipe['Ethnicity/Origin'].replace(/\n/g,',')}
     if (recipe['Key Ingredient'])
-      div(class='recipeAttributes') Key Ingredient: #{recipe['Key Ingredient']}
+      div(class='recipeAttributes') Key Ingredient: #{recipe['Key Ingredient'].replace(/\n/g,',')}
     if (recipe['Difficulty'])
-      div(class='recipeAttributes') Difficulty: #{recipe['Difficulty']}
+      div(class='recipeAttributes') Difficulty: #{recipe['Difficulty'].replace(/\n/g,',')}
     if (recipe['Make Ahead'])
-      div(class='recipeAttributes') Make Ahead: #{recipe['Make Ahead']}
+      div(class='recipeAttributes') Make Ahead: #{recipe['Make Ahead'].replace(/\n/g,',')}
     if (recipe['Prep Method'])
-      div(class='recipeAttributes') Prep Method: #{recipe['Prep Method']}
+      div(class='recipeAttributes') Prep Method: #{recipe['Prep Method'].replace(/\n/g,',')}
     if (recipe['Themes/Holidays'])
-      div(class='recipeAttributes') Themes/Holidays: #{recipe['Themes/Holidays']}
+      div(class='recipeAttributes') Themes/Holidays: #{recipe['Themes/Holidays'].replace(/\n/g,',')}
     if (hasPictures)
       if (hidePicts == true)
         div(style="font-size:0.8em;padding-top:0.1in;")

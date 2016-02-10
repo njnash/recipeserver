@@ -45,12 +45,23 @@ setInterval(function(){global.rm.loadRecipeData();}, 15 * 60 * 1000);
 global.cm = new IDCookieManager(dataDir);
 app.set('view engine', 'jade');
 
+app.use(cookieParser('audrey\'s great big book of food'));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+app.use(function(req, res, next) {
+  req.cookieID = '';
+  if (req.cookies.ID != null) {
+    req.cookieID = req.cookies.ID;
+  }
+  next();
+});
+morgan.token('cookieID', function(req) {
+  return req.cookieID;
+});
 app.use(morgan('dev')); // Log to the console
-app.use(morgan('combined', {stream: logStream})); // Log to the file
+app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" :cookieID', {stream: logStream})); // Log to the file
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser('audrey\'s great big book of food'));
 
 function generateUUID() {
     var d = new Date().getTime();
