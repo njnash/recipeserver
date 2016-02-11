@@ -36,3 +36,23 @@ a:hover {
 /* selected link */
 a:active {
 }
+
+#middleContainer {
+    width: 600px;
+    margin: 5px auto;
+    padding: 10px 10px;
+}
+
+#middleContainer {
+    position: relative;
+    left: 50%;
+    margin-left: -300px;
+}
+.box {
+    background: white;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: #071419;
+    border-radius: 12px;
+    -moz-border-radius: 12px;
+}
