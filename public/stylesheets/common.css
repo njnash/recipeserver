@@ -39,15 +39,11 @@ a:active {
 
 #middleContainer {
     width: 600px;
-    margin: 5px auto;
-    padding: 10px 10px;
+    max-width: 92%;
+    margin: .1in auto;
+    padding: .07in .07in;
 }
 
-#middleContainer {
-    position: relative;
-    left: 50%;
-    margin-left: -300px;
-}
 .box {
     background: white;
     border-style: solid;
