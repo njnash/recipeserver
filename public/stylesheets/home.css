@@ -106,9 +106,6 @@ select {
 }
 
 .indexPage {
-  max-width: 8.5in;
-  padding: 0.1in 0.1in 0.1in 0.1in;
-  background-color: white;
 }
 
 .indexPageImage {

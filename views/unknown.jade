@@ -7,11 +7,14 @@ html
     meta(name='robots' content='noindex')
 
 body
-  div(style='padding: 0.1in 0.25in 0.25in 0.1in;')
+  div(id="middleContainer",class="box")
+    div(class='header no-print')
+      a(href="/")
+        img(src="images/Audrey's Great Big Book of Food Title Small Alpha.png" style="width:auto;height:auto;max-width:100%;max-height:100%")
+
     - var mailto = 'mailto:' + emailAddress;
     - mailto += '?subject=Request%20Recipe%20Access:' + cookie;
     - mailto += "&body=" + escape("http://www.audreysgreatbigbookoffood.com/addCookie?cookie=" + cookie + "&who=");
-    h1 Audrey's Great Book of Food - Access Instructions
     p
       &nbsp;
     p
@@ -25,7 +28,7 @@ body
     p
       &nbsp;
     p
-      | If that does not work, then send an email to this address <b>#{emailAddress}.</b><br>
+      | If that does not work, then send an email to this address <b>#{emailAddress}</b><br>
       | Please provide this code: <b>#{cookie}</b>. 
     p
       &nbsp;
