@@ -7,10 +7,6 @@
   color: black;
 }
 
-.header {
-  height:60px;
-}
-
 .undertitle {
 }
 
@@ -87,9 +83,6 @@ img {
   /* For smartphones */
   body {
     font-size: 1.0em;
-  }
-  .header {
-    margin-left: 0.0in;
   }
   .liUnordered
   {

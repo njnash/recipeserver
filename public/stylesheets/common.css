@@ -54,7 +54,14 @@ a:active {
     -moz-border-radius: 12px; */
 }
 
-media only screen and (max-device-width: 1024px) {
+.header {
+  background-image: url("/images/Audrey's Great Big Book of Food Title Small Alpha.png");
+  width:509px;
+  height: 60px;
+  margin:auto;
+}
+
+@media only screen and (max-device-width: 1024px) {
   /* For general iPad layouts */
   body {
     font-size: 1.6em;
