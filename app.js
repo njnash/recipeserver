@@ -131,11 +131,8 @@ app.use(
   function(req, res, next) {
     permission = cm.isCookeValid(req.cookies.ID);
     if (permission < 2) {
-      // Found, but no permission
-      res.render('error', {
-        message: 'You do not have permission to access this.',
-        error: {}
-      });
+      // Found, but no permission, redirect to home page
+      res.redirect('/');
     } else {
       next();
     }
