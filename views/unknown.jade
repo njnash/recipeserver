@@ -2,7 +2,7 @@ doctype html
 html
   head
     title Unknown user
-    link(rel='stylesheet', href='/stylesheets/home.css')
+    link(rel='stylesheet', href='/stylesheets/index.css')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     meta(name='robots' content='noindex')
 
@@ -20,14 +20,15 @@ body
       | Access must be granted to each individual device. (eg. iPad, iPhone, laptop, and desktop)
     p
       &nbsp;
+      p
+        | Send an email to this address <b>#{emailAddress}</b><br>
+        | Please provide this code: <b>#{cookie}</b>. 
     p
-      a(href=mailto) Click on this link
+      | You may be able to 
+      a(href=mailto) click on this link
       |  to send an email to the website's owners which will request access for you.
     p
       &nbsp;
-    p
-      | If that does not work, then send an email to this address <b>#{emailAddress}</b><br>
-      | Please provide this code: <b>#{cookie}</b>. 
     p
       &nbsp;
     p

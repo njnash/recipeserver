@@ -62,6 +62,12 @@ img {
   padding-bottom: 0.1in;
 }
 
+.recipePicture
+{
+  max-width: 6in;
+  margin-left: 0.1in;
+}
+
 @media only screen and (max-device-width: 1024px) {
   /* For general iPad layouts */
   body {
