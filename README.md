@@ -2,20 +2,10 @@
 
 ### How do I get set up? ###
 
-* Install node.js
-* Install npm
+* sudo apt-get install nodejs
+* sudo apt-get install npm
 * Install packages using npm
-    * npm install express
-    * npm install serve-favicon
-    * npm install morgan
-    * npm install cookie-parser
-    * npm install body-parser
-    * npm install debug
-    * npm install jade
-    * npm install file-stream-rotator
-    * npm install nodemailer
-    * npm install googleapis
-    * npm install google-auth-library
+    * npm install express serve-favicon  morgan cookie-parser body-parser debug jade file-stream-rotator nodemailer googleapis google-auth-library
 
 To control server on toshiba-1
   stop recipe
