@@ -9,6 +9,7 @@ while true; do
     git pull
   else
     echo "Exit code: $?"
-    break
+    sleep 30
+    git pull
   fi
 done
