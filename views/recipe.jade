@@ -24,13 +24,13 @@ mixin recipeBody(str)
   ol
     each item in splitArray
       - str = item;
-      - str = str.replace(/\$_\^([A-Z,a-z,0-9,_,/,-,\']+)/g, "<b><u><i>$1</i></u></b>");
-      - str = str.replace(/\$_([A-Z,a-z,0-9,_,/,-,\']+)/g, "<b><i>$1</i></b>");
-      - str = str.replace(/\$\^([A-Z,a-z,0-9,_,/,-,\']+)/g, "<b><i>$1</i></b>");
-      - str = str.replace(/\^_([A-Z,a-z,0-9,_,/,-,\']+)/g, "<u><i>$1</i></u>");
-      - str = str.replace(/\$([A-Z,a-z,0-9,_,/,-,\']+)/g, "<b>$1</b>");
-      - str = str.replace(/_([A-Z,a-z,0-9,_,/,-,\']+)/g, "<u>$1</u>");
-      - str = str.replace(/\^([A-Z,a-z,0-9,_,/,-,\']+)/g, "<i>$1</i>");
+      - str = str.replace(/\$_\^([A-Z,a-z,0-9,_,/,\-,\']+)/g, "<b><u><i>$1</i></u></b>");
+      - str = str.replace(/\$_([A-Z,a-z,0-9,_,/,\-,\']+)/g, "<b><i>$1</i></b>");
+      - str = str.replace(/\$\^([A-Z,a-z,0-9,_,/,\-,\']+)/g, "<b><i>$1</i></b>");
+      - str = str.replace(/\^_([A-Z,a-z,0-9,_,/,\-,\']+)/g, "<u><i>$1</i></u>");
+      - str = str.replace(/\$([A-Z,a-z,0-9,_,/,\-,\']+)/g, "<b>$1</b>");
+      - str = str.replace(/_([A-Z,a-z,0-9,_,/,\-,\']+)/g, "<u>$1</u>");
+      - str = str.replace(/\^([A-Z,a-z,0-9,_,/,\-,\']+)/g, "<i>$1</i>");
       - str = str.replace(/\[R ([^\]]*)]([^\[]*)\[\/R\]/g, function(str,p1,p2) {return '<a href="/recipe?title=' + encodeURIComponent(p1) + '">' + p2 + '</a>';});
       if (str.substr(0,2) == '. ')
         li(class='liUnordered') !{str.substr(2)}
