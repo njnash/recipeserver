@@ -24,6 +24,10 @@ function RecipeManager(googleSpreadsheetID)
   this.loadRecipeData();
 }
 
+function RegExpQuote(str) {
+    return (str+'').replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&");
+};
+
 RecipeManager.prototype.textSearch = function(arm, str, prop)
 {
   if (arm == null) {
@@ -36,7 +40,7 @@ RecipeManager.prototype.textSearch = function(arm, str, prop)
     regex = new RegExp(str, "i");
   } else {
     // For a property search require exact matches.
-    regex = new RegExp("(^|\n)" + str + "(\n|$)", "i");
+    regex = new RegExp("(^|\n)" + RegExpQuote(str) + "(\n|$)", "i");
   }
   var armReturn = [];
   var objArray = [];
