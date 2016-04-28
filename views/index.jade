@@ -13,6 +13,7 @@ html
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     meta(name='robots' content='noindex')
     script(src="jquery-2.2.0.min.js")
+    script(src="javascripts/remember_scroll.js")
 body
   div(class='indexPage')
     a(href="/")
@@ -85,7 +86,7 @@ body
     a(href='about.html' ) About
     | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     a(href="comment") Comment
-  p&nbsp;
+  p &nbsp;
   script.
     function submitForm() {
       $( "#searchForm" ).submit();
