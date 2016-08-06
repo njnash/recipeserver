@@ -1,4 +1,13 @@
-#!/bin/bash
+#!/bin/bash -f
+
+. ~/.bash_profile
+
+echo "Starting Recipe Server"
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $DIR
+
+echo "Connecting to $DIR"
 
 # Runs server.js
 
